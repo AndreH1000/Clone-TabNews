@@ -13,9 +13,6 @@ async function query(queryObject) {
   } finally {
     await client.end();
   }
-
-  const result = await client.query(queryObject);
-  return result;
 }
 
 async function getNewClient() {
@@ -32,10 +29,12 @@ async function getNewClient() {
   return client;
 }
 
-export default {
+const database = {
   query,
   getNewClient,
 };
+
+export default database;
 
 function getSSLValues() {
   if (process.env.POSTGRES_CA) {
